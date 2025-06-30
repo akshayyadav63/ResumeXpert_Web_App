@@ -1,9 +1,9 @@
-const User = require('../models/usermodel');
 const jwt = require('jsonwebtoken');
+const User = require('../models/usermodel');
 
 const protect = async (req, res, next) => {
   try {
-    let token = req.headers.authorization; // ✅ Fixed here
+    let token = req.headers.authorization;
 
     if (token && token.startsWith("Bearer")) {
       token = token.split(" ")[1];
@@ -17,17 +17,11 @@ const protect = async (req, res, next) => {
 
       next();
     } else {
-      res.status(401).json({ message: "Not authorized, no token found" });
+      res.status(401).json({ message: "Not authorized, no token" });
     }
-
   } catch (error) {
-    res.status(401).json({
-      message: "Token failed",
-      error: error.message
-    });
+    res.status(401).json({ message: "Token failed", error: error.message });
   }
 };
 
-module.exports = {
-  protect,
-};
+module.exports = protect;
