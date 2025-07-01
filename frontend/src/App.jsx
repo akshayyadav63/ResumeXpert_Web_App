@@ -1,10 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { Route,Routes } from 'react-router-dom'
+import LandingPage from './pages/LandingPage'
+import './App.css'
+import UserProvider from './context/UserContext'
+
 function App() {
   
   return (
-    <>
-   <div className='bg-red-500'> resumeBuilder</div>
-    </>
+    <UserProvider>
+       <Routes>
+      <Route path='/' element={<LandingPage/>}/>
+
+    </Routes>
+    </UserProvider>
+   
   )
 }
 
