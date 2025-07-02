@@ -1,6 +1,6 @@
 // profile info cards 
 
-import { useContext } from "react";
+import React,{ useContext } from "react";
 import { useNavigate } from "react-router-dom"
 import { UserContext } from "../context/UserContext";
 import { cardStyles } from "../assets/dummystyle";

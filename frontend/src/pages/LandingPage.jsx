@@ -1,12 +1,22 @@
 import React, { useState, useContext } from "react";
 import { landingPageStyles } from "../assets/dummystyle";
-import { ArrowRight, LayoutTemplate, Menu, X, Zap, Download } from "lucide-react";
+import {
+  ArrowRight,
+  LayoutTemplate,
+  Menu,
+  X,
+  Zap,
+  Download,
+} from "lucide-react";
 
 
 import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import { ProfileInfoCard } from "../component/Card";
 import RightSide from "./RightSide";
+import Login from "../component/Login";
+import Signup from "../component/Signup";
+import Modal from "../component/Modal";
 
 export default function LandingPage() {
   const { user } = useContext(UserContext);
@@ -173,63 +183,120 @@ export default function LandingPage() {
               </div>
             </div>
             {/** Right side  */}
-                 <RightSide/>
+            <RightSide />
           </div>
         </section>
-       
-            {/** features section */}
-              <section className={landingPageStyles.featuresSection}>
-                <div className={landingPageStyles.featuresContainer}>
-                  <div className={landingPageStyles.featuresHeader}>
-                    <h2 className={landingPageStyles.featuresTitle}>
-                      Why Choose <span className={landingPageStyles.featuresTitleGradient}>ResumeXpert?</span>
 
-                    </h2>
+        {/** features section */}
+        <section className={landingPageStyles.featuresSection}>
+          <div className={landingPageStyles.featuresContainer}>
+            <div className={landingPageStyles.featuresHeader}>
+              <h2 className={landingPageStyles.featuresTitle}>
+                Why Choose{" "}
+                <span className={landingPageStyles.featuresTitleGradient}>
+                  ResumeXpert?
+                </span>
+              </h2>
+              <p className={landingPageStyles.featureDescription}>
+                Everything You need to create a Professional resume that stand
+                out
+              </p>
+            </div>
+            <div className={landingPageStyles.featuresGrid}>
+              {[
+                {
+                  icon: <Zap className={landingPageStyles.featureIcon} />,
+                  title: "Lightning Fast",
+                  description:
+                    "Create professional resumes in under 5 minutes with our streamlined process",
+                  gradient: landingPageStyles.featureIconViolet,
+                  bg: landingPageStyles.featureCardViolet,
+                },
+                {
+                  icon: (
+                    <LayoutTemplate className={landingPageStyles.featureIcon} />
+                  ),
+                  title: "Pro Templates",
+                  description:
+                    "Choose from dozens of recruiter-approved, industry-specific templates",
+                  gradient: landingPageStyles.featureIconFuchsia,
+                  bg: landingPageStyles.featureCardFuchsia,
+                },
+                {
+                  icon: <Download className={landingPageStyles.featureIcon} />,
+                  title: "Instant Export",
+                  description:
+                    "Download high-quality PDFs instantly with perfect formatting",
+                  gradient: landingPageStyles.featureIconOrange,
+                  bg: landingPageStyles.featureCardOrange,
+                },
+              ].map((feature, index) => (
+                <div key={index} className={landingPageStyles.featureCard}>
+                  <div className={landingPageStyles.featureCardHover}></div>
+                  <div
+                    className={`${landingPageStyles.featureCardContent} ${feature.bg}`}
+                  >
+                    <div
+                      className={`${landingPageStyles.featureIconContainer} ${feature.gradient}`}
+                    >
+                      {feature.icon}
+                    </div>
+                    <h3 className={landingPageStyles.featureTitle}>
+                      {feature.title}
+                    </h3>
                     <p className={landingPageStyles.featureDescription}>
-                      Everything You need to create a Professional resume that stand out 
+                      {feature.description}
                     </p>
                   </div>
-                  <div className={landingPageStyles.featuresGrid}>
-                     {[
-                                {
-                                    icon: <Zap className={landingPageStyles.featureIcon} />,
-                                    title: "Lightning Fast",
-                                    description: "Create professional resumes in under 5 minutes with our streamlined process",
-                                    gradient: landingPageStyles.featureIconViolet,
-                                    bg: landingPageStyles.featureCardViolet
-                                },
-                                {
-                                    icon: <LayoutTemplate className={landingPageStyles.featureIcon} />,
-                                    title: "Pro Templates",
-                                    description: "Choose from dozens of recruiter-approved, industry-specific templates",
-                                    gradient: landingPageStyles.featureIconFuchsia,
-                                    bg: landingPageStyles.featureCardFuchsia
-                                },
-                                {
-                                    icon: <Download className={landingPageStyles.featureIcon} />,
-                                    title: "Instant Export",
-                                    description: "Download high-quality PDFs instantly with perfect formatting",
-                                    gradient: landingPageStyles.featureIconOrange,
-                                    bg: landingPageStyles.featureCardOrange
-                                }
-                          ].map((feature, index) => (
-  <div key={index} className={landingPageStyles.featureCard}>
-    <div className={landingPageStyles.featureCardHover}></div>
-    <div className={`${landingPageStyles.featureCardContent} ${feature.bg}`}>
-      <div className={`${landingPageStyles.featureIconContainer} ${feature.gradient}`}>
-        {feature.icon}
-      </div>
-      <h3 className={landingPageStyles.featureTitle}>{feature.title}</h3>
-      <p className={landingPageStyles.featureDescription}>{feature.description}</p>
-    </div>
-  </div>
-))}
-
-                  </div>
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        {/**cta section */}
+        <section className={landingPageStyles.ctaSection}>
+          <div className={landingPageStyles.ctaContainer}>
+            <div className={landingPageStyles.ctaCard}>
+              <div className={landingPageStyles.ctaCardBg}></div>
+              <div className={landingPageStyles.ctaCardContent}>
+                <h2 className={landingPageStyles.ctaTitle}>Ready to Build Your <span className={landingPageStyles.ctaTitleGradient}>
+                  Standout Rseume?
+                  </span>
+                  </h2>
+                  <p className={landingPageStyles.ctaDescription}>
+                   Join thousands of  professional who landed their dream jobs with our platform.
+                  </p>
+                  <button className={landingPageStyles.ctaButton} onClick={handleCTA}>
+                    <div className={landingPageStyles.ctaButtonOverlay}></div>
+                    <span className={landingPageStyles.ctaButtonText}>Start Building Now</span>
 
-          </section>
+                  </button>
+              </div>
+              
+            </div>
+          </div>
+        </section>
       </main>
+      {/** fotter section */}
+      <footer className={landingPageStyles.footer}>
+        <div className={landingPageStyles.footerContainer}>
+          <p className={landingPageStyles.footerText}>
+  Crafted with <span className={landingPageStyles.footerHeart}>❤️</span> by{' '}
+  <a href="https://www.linkedin.com/in/akshay-yadav-b5942832a/" target="_blank" className={landingPageStyles.footerLink}>Akshay Yadav</a>
+          </p>
+        </div>
+      </footer>
+      {/**model for  login and signup */}
+      <Modal isOpen={openAuthModel} onClose={()=>{
+        setOpenAuthModel(false);
+        setCurrentPage("login")
+      }} hideHeader>
+        <div>
+          {currentPage==="login" && <Login setCurrentPage={setCurrentPage}/>}
+           {currentPage==="signup" && <Signup setCurrentPage={setCurrentPage}/>}
+        </div>
+
+      </Modal>
     </div>
   );
 }
