@@ -18,7 +18,7 @@ const ResumeSchema=new mongoose.Schema({
     },
     profileInfo:{
         profilePreviewURL:String,
-        fullName: { type: String, required: true },
+        fullName: { type: String, default:' ' },
         designation:String,
         summary:String,
     },

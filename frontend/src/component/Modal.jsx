@@ -7,7 +7,11 @@ function Modal({
   isOpen,
   onClose,
   title,
-  hideHeader
+  hideHeader,
+  showActionBtn,
+  actionBtnIcon=null,
+  actionBtnText, 
+  onActionClick=()=>{ },
 }) {
   if (!isOpen) return null;
 
@@ -17,6 +21,11 @@ function Modal({
         {!hideHeader && (
           <div className={styles.header}>
             <h3 className={styles.title}>{title}</h3>
+            {showActionBtn && <button className={styles.actionButton}
+            onClick={onActionClick}>
+              {actionBtnIcon}
+              {actionBtnText}
+              </button>}
           </div>
         )}
         <button

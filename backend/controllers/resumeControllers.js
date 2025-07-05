@@ -3,8 +3,17 @@ const fs = require("fs");
 const path = require("path");
 
 const createdResume = async (req, res) => {
-    try {
-        const title = req.body.title;
+   try {
+    console.log("💥 req.user:", req.user);
+
+    if (!req.user || !req.user._id) {
+      return res.status(401).json({ message: "Unauthorized: No user info" });
+    }
+
+    const title = req.body.title;
+    if (!title) {
+      return res.status(400).json({ message: 'Title is required' });
+    }
 
         //default template 
         const defaultResumeData = {
@@ -69,18 +78,20 @@ const createdResume = async (req, res) => {
             ],
             interests: [''],
         };
-
-        const newResume = await Resume.create({
-            userId: req.user._id,
-            title,
-            ...defaultResumeData,
-            ...req.body
-        });
+  
+       const newResume = await Resume.create({
+      userId: req.user._id,
+      title,
+      ...defaultResumeData,
+      ...req.body
+    });
+ 
 
         res.status(201).json(newResume);
     } catch (error) {
-        res.status(500).json({ message: "Failed to create resume", error: error.message });
-    }
+    console.error("🔥 Resume Create Error:", error); // add this too
+    res.status(500).json({ message: "Failed to create resume", error: error.message });
+  }
 }
 
 
