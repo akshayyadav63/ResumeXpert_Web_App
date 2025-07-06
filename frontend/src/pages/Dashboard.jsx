@@ -123,7 +123,7 @@ function Dashboard() {
       toast.error("failed to resume");
     } finally {
       setResumeToDelete(null);
-      showDeleteConfirm(false);
+      setShowDeleteConfirm(false);
     }
   };
   const handleDeleteClick = (id) => {
