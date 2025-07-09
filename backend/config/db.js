@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+const MONGO_URL = process.env.MONGO_CONNECTION_STRING;
 
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/interviewPrepDB', {
+        await mongoose.connect(MONGO_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
