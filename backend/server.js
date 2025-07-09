@@ -23,7 +23,7 @@ app.use('/api/resume', resumeRouter);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.setHeader("Access-Control-Allow-Origin", "https://resumexpert-web-app.onrender.com");
   next();
 });
 
