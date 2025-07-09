@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { DUMMY_RESUME_DATA, resumeTemplates } from '../utills/data';
 import { TemplateCard } from './Card';
 import { Check } from 'lucide-react'; 
@@ -20,6 +20,13 @@ function ThemeSelectors({ selectedTheme, setSelectedTheme, resumeData, onClose }
       setBaseWidth(resumeRef.current.offsetWidth);
     }
   };
+  useEffect(()=>{
+    updateBaseWidth()
+    window.addEventListener("resize",updateBaseWidth)
+    return ()=>{
+      window.removeEventListener("resize",updateBaseWidth)
+    }
+  },[])
 
   // selected theme using id
   const initialIndex = resumeTemplates.findIndex(t => t.id === selectedTheme);

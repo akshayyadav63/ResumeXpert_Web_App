@@ -1,4 +1,5 @@
-import { Input } from "./Inputs";
+import React from "react";
+import Input from "./Input";
 import { RatingInput } from "./ResumeSection";
 import { Plus, Trash2 } from "lucide-react";
 import {
