@@ -13,7 +13,7 @@ import { AlertCircle, Download, Palette, Trash2, ArrowLeft, Loader2, Save } from
 import axiosInstance from "../utills/axiosInstance";
 import { API_PATHS } from "../utills/apiPath";
 import toast from "react-hot-toast";
-import { fixTailwindColors } from "../utills/Color";
+import { fixTailwindColors } from "../utills/color";
 import html2pdf from "html2pdf.js";
 import html2canvas from "html2canvas"
 import { captureElementAsImage, dataURLtoFile } from "../utills/helper"

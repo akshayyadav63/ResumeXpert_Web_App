@@ -1,4 +1,4 @@
-export const Base_URL='http://localhost:4000'
+export const Base_URL= 'https://resumexpert-web-app-backend.onrender.com'
 
 // Routes used for frontend
  export const API_PATHS={
